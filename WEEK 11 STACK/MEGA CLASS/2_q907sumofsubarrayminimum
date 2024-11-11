@@ -1,0 +1,80 @@
+//method1 -> brute force but memory limit exceeded
+class Solution {
+public:
+    int sumSubarrayMins(vector<int>& arr) {
+        vector<int>sum;
+        int m = INT_MAX;
+        int n = arr.size();
+        for(int i=0; i<n; i++) {
+            for(int j=i; j<n; j++) {
+                m = min(arr[j], m);
+                sum.push_back(m);
+            }
+            m = INT_MAX;
+        }
+        
+        // Use long long to handle larger sums
+        long long ans = 0;
+        for(int it : sum) {
+            ans += it;
+        }
+
+        return ans % 1000000007;  // Ensure result is within the required range
+    }
+};
+
+//optimal approach using nextsmaller and prevsmaller
+class Solution {
+public:
+
+    vector<int> nextsmaller(vector<int>& v) {
+        stack<int> s;
+        s.push(-1);
+        vector<int> ans(v.size(), -1);
+        
+        for(int i = v.size() - 1; i >= 0; i--) {
+            while(!s.empty() && s.top() != -1 && v[s.top()] > v[i])//here only > 
+            {
+                s.pop();
+            }
+            ans[i] = s.top();
+            s.push(i);
+        }
+        return ans;    
+    }
+
+    vector<int> prevsmaller(vector<int>& v) {
+        stack<int> s;
+        s.push(-1);
+        vector<int> ans(v.size(), -1);
+        
+        for(int i = 0; i < v.size(); i++) {
+            while(!s.empty() && s.top() != -1 && v[s.top()] >= v[i]) //here >=
+            {
+                s.pop();
+            }
+            ans[i] = s.top();
+            s.push(i); 
+        }
+        return ans;   
+    }
+
+    int sumSubarrayMins(vector<int>& arr) {
+        auto nextSmaller = nextsmaller(arr);
+        auto prevSmaller = prevsmaller(arr);
+
+        long long sum = 0; // Sum of all subarray minimum elements
+        const int mod = 1e9 + 7;
+
+        for(int i = 0; i < arr.size(); i++) {
+            int nexti = nextSmaller[i] == -1 ? arr.size() : nextSmaller[i];
+            int previ = prevSmaller[i];
+            int left = i - previ;
+            int right = nexti - i;
+            long long nooftimes = (left % mod * right % mod) % mod;
+            long long total = (nooftimes * arr[i]) % mod; 
+            sum = (sum + total) % mod;
+        }
+        return sum;
+    }
+};
