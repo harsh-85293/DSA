@@ -38,7 +38,7 @@
             int rightsubtree = maxDepth(root->right);
 
             int maxi = max(leftsubtree, rightsubtree);
-            int  ans = maxi + 1;//for root node
+            int  ans = maxi + 1;//for root node here hight is increased at each level
             return ans;
         }
     };

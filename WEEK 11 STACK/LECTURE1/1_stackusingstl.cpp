@@ -16,7 +16,8 @@
         cout << "size of stack is:" << s.size() << endl;
 
         //check empty or not
-        cout << "0 if empty 1 and if not empty:"<< s.empty() << endl;//0 if empty 1 if not empty
+        //return 0(false) if not empty and 1(true) if empty
+        cout << s.empty() << endl;
 
         //peek->stack ko upar se dekhne ke liye
         cout << "peek element:" << s.top() << endl;

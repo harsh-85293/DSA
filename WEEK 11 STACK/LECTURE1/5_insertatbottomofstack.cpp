@@ -1,11 +1,9 @@
     #include <bits/stdc++.h>
     using namespace std;
 
-    void insertatbottom(stack<int> &s, int value)
-    {
+    void insertatbottom(stack<int> &s, int value){
         //base case
-        if(s.empty())
-        {
+        if(s.empty()){
             s.push(value);
             return;
         }
@@ -15,14 +13,13 @@
         s.pop();
 
         //baaki recursion sambhal lega
-        insertatbottom(s,value);
+        insertatbottom(s, value);
 
         //backtrack
         s.push(topelement);
     }
 
-    int main()
-    {
+    int main(){
         stack<int>s;
         s.push(10);
         s.push(20);

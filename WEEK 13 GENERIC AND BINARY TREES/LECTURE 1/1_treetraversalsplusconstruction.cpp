@@ -49,7 +49,7 @@
             return ;
         }
 
-        //NLR
+        //NLR -> [currentnode leftnode rightnode]
         //N
         cout << root->data << endl;
         //L
@@ -91,23 +91,26 @@
     }
 
     void levelordertraversal(Node* root){
+
         if(root == NULL){
             return;
         }
+
         queue<Node*>q;
         //initial state maintain
         q.push(root);
-        q.push(NULL);
+        q.push(NULL);//A NULL is pushed to indicate the end of the first level
 
         //logic -> step A B C
         while(!q.empty()){
-            Node* front  = q.front();
+            Node* front  = q.front();//front stores the node at the front of the queue (to process it).
 
+            //When front is NULL, it means the previous level has been completely processed
             if(front == NULL){
-                //iska matlab purana level complete ho gaya hai
-                cout << endl;
+                //iska matlab purana ek level complete ho gaya hai
+                cout << endl;//to separate the levels in the output.
                 if(!q.empty()){
-                    q.push(NULL); 
+                    q.push(NULL); //push another NULL to mark the end of the next level
                 }
             }
 
@@ -121,6 +124,7 @@
                 if(front->left != NULL){
                     q.push(front->left);
                 }
+                
                 if(front->right != NULL){
                     q.push(front->right);
                 }

@@ -3,6 +3,7 @@
         "ostream": "cpp",
         "2_q907sumofsubarrayminimum": "cpp",
         "array": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "iostream": "cpp"
     }
 }

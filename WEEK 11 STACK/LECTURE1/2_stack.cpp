@@ -4,11 +4,11 @@
     class Stack
     {
         public:
-            int* arr;
-            int size;
-            int top;
+            int* arr; //pointer to an integer
+            int size; //size of stack
+            int top; //peek of stack
 
-            Stack(int capacity)
+            Stack(int capacity) //parametrized constructor
             {
                 arr = new int[capacity];
                 size = capacity;

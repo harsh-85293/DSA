@@ -15,7 +15,7 @@
     public:
         int getindexinorder(vector<int>& inorder, int target){
             int n = inorder.size();
-            for(int i=0; i<n; i++){
+            for(int i = 0; i < n; i++){
                 if(inorder[i] == target){
                     return i;
                 }

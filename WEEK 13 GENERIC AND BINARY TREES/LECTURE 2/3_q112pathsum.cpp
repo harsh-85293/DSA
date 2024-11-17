@@ -19,7 +19,7 @@
             }
 
             //root pakka not null hai
-            sum += root->val;
+            sum += root -> val;
 
             if(root->left == NULL && root->right == NULL){
                 //root is a leaf node
