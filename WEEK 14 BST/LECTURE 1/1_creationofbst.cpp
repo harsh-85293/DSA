@@ -37,7 +37,6 @@
     }
 
     Node* createbst(){
-
         cout << "enter the value for node:" << endl;
         int val;
         cin >> val;
