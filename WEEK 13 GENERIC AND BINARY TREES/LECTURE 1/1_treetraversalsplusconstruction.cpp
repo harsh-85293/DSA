@@ -112,7 +112,7 @@
                 if(!q.empty()){
                     q.push(NULL); //push another NULL to mark the end of the next level
                 }
-            }
+            } 
 
             else{
                 q.pop(); 
