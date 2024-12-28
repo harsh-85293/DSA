@@ -3,6 +3,7 @@
      
    int main()
    {
+        //min heap creation
         priority_queue< int, vector<int>, greater<int> > pq;
         pq.push(10);
         pq.push(5);
