@@ -1,4 +1,3 @@
-    
     #include <bits/stdc++.h>
     using namespace std;
 
@@ -9,9 +8,7 @@
         {
             return 1;
         }
-
         //recursive call
-
         //fact(n)=n*fact(n-1)
         //bigproblem->fact(n)
         //small problem->fact(n-1)
@@ -21,7 +18,6 @@
         int finalans = n * recursionkaans;
         
         return finalans;
-
     }
 
     int main()
