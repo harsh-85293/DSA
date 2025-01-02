@@ -101,23 +101,23 @@
     }
 
     void storestring(TrieNode* root, vector<string> &ans, string output){
-        //base case
-        if(root->isterminal){
-          ans.push_back(output);
-          //no need for return keyword
-        }
+          //base case
+          if(root->isterminal){
+            ans.push_back(output);
+            //no need for return keyword
+          }
 
-        //1 case mai solve karunga
-        for(auto it : root->childrenmap){
-          char ch = it.first;
-          TrieNode* child = it.second;
-          output.push_back(ch);
+          //1 case mai solve karunga
+          for(auto it : root->childrenmap){
+            char ch = it.first;
+            TrieNode* child = it.second;
+            output.push_back(ch);
 
-          
-        //baaki recursion sambhal lega
-        storestring(child, ans, output);
-        //backtracking
-        output.pop_back();
+            
+          //baaki recursion sambhal lega
+          storestring(child, ans, output);
+          //backtracking
+          output.pop_back();
         }
     }
 

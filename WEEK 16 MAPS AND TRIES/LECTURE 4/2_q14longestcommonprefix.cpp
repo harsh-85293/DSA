@@ -11,17 +11,17 @@
             bool isterminal;
 
             TrieNode(char data){
-            value = data;
-            isterminal = false;
+                value = data;
+                isterminal = false;
             }
         };
 
         void insertinTrie(TrieNode* root, string word){
-        //base case->ek time aisa aayega jab aapki string empty aaegi
-        //tab terminal mark kar do
-        if(word.length() == 0){
-        root -> isterminal = true;
-        return;
+            //base case->ek time aisa aayega jab aapki string empty aaegi
+            //tab terminal mark kar do
+            if(word.length() == 0){
+            root -> isterminal = true;
+            return;
         }
 
         // 1 case solve karna
@@ -30,19 +30,19 @@
         TrieNode* child;
         
         //present hai to waha chale jao
-        if(root -> childrenmap.count(ch) ==1 ){
-        /*retrieves or initializes a child node in the unordered map childrenmap for the 
-        character ch*/
-        child = root -> childrenmap[ch];    
+        if(root -> childrenmap.count(ch) == 1 ){
+            /*retrieves or initializes a child node in the unordered map childrenmap for the 
+            character ch*/
+            child = root -> childrenmap[ch];    
         }
 
         //absent hai to create kar do
         else{
-        //absent
-        child = new TrieNode(ch);
-        //link 
-        //assigns the child node to the childrenmap of the current root node, using ch as the key.
-        root->childrenmap[ch] = child;
+            //absent
+            child = new TrieNode(ch);
+            //link 
+            //assigns the child node to the childrenmap of the current root node, using ch as the key.
+            root->childrenmap[ch] = child;
         }
         //baaki recursion sambhal lega
         insertinTrie(child, word.substr(1));
