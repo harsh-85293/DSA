@@ -43,7 +43,6 @@
             int ans_start = mini;
             int ans_end = maxi;
 
-
             //main logic
             //tab tak aage bado jab tak priority queue empty na ho
             while(!pq.empty()){

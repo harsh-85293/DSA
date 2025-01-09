@@ -57,7 +57,7 @@
                     int front_rindex = front->rindex;
                     ans.push_back(frontdata);
                     
-                    //check if aage data hai fornt ke ,then push it to priority queue
+                    //check if aage data hai front ke ,then push it to priority queue
                     if(front_cindex + 1 < totalcolumns){
                         int ele = arr[front_rindex][front_cindex + 1];
                         Info* temp = new Info(ele, front_cindex + 1, front_rindex);

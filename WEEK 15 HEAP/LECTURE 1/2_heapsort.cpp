@@ -70,7 +70,7 @@
         int li = 2*i;
         int ri = 2*i + 1;
         
-        int largestindex = i;//assumin i par value hi greatest hai
+        int largestindex = i;//assuming i par value hi greatest hai
 
         //check in left
         if(li < n && arr[li] > arr[largestindex]){

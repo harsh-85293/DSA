@@ -1,61 +1,60 @@
    #include <bits/stdc++.h>
    using namespace std;
     class MedianFinder {
-    public:
-        priority_queue<int> maxHeap;
-        priority_queue<int,vector<int>, greater<int> > minHeap;
+        public:
+            priority_queue<int> maxHeap;
+            priority_queue<int,vector<int>, greater<int> > minHeap;
 
-    MedianFinder() {
-    }
-    
-    void addNum(int num) {
-        if(maxHeap.size() == minHeap.size()) {
-            if(num > findMedian()) {
-                //insert in right
-                minHeap.push(num);
-               
-            }
-            else {
-                //insert in left;
-                maxHeap.push(num);
-               
-            }
-        }
-        else if(maxHeap.size() == minHeap.size() + 1) {
-            //maxHeap ka size bada h as compared to minheap by 1 
-            if(num > findMedian() ){
-                //insert in right
-                minHeap.push(num);
-            }
-            else {
-                //insert in left
-                //max already bada h seedha insert nahi kr skte, toh 1 element offload karo 
-                int element = maxHeap.top();
-                maxHeap.pop();
-                minHeap.push(element);
-                ////now insert num in left
-                maxHeap.push(num);
+        MedianFinder() {}
+        
+        void addNum(int num) {
+            if(maxHeap.size() == minHeap.size()) {
+                if(num > findMedian()) {
+                    //insert in right
+                    minHeap.push(num);
                 
-            }
-        }
-        else if(maxHeap.size()+1 == minHeap.size()) {
-            //minheap ka size bada h as compared to maxheap by 1 
-            if(num > findMedian()) {
-                //insert in right
-                //min already bada h seedha insert nahi kr skte, toh 1 element offload karo 
-                int element = minHeap.top();
-                minHeap.pop();
-                maxHeap.push(element);
-                //now insert num in right 
-                minHeap.push(num);
+                }
+                else {
+                    //insert in left;
+                    maxHeap.push(num);
                 
+                }
             }
-            else {
-                //insert in left
-                maxHeap.push(num);
-                
+            else if(maxHeap.size() == minHeap.size() + 1) {
+                //maxHeap ka size bada h as compared to minheap by 1 
+                if(num > findMedian() ){
+                    //insert in right
+                    minHeap.push(num);
+                }
+                else {
+                    //insert in left
+                    //max already bada h seedha insert nahi kr skte, toh 1 element offload karo 
+                    int element = maxHeap.top();
+                    maxHeap.pop();
+                    minHeap.push(element);
+                    ////now insert num in left
+                    maxHeap.push(num);
+                    
+                }
             }
-        }
+            else if(maxHeap.size()+1 == minHeap.size()) {
+                //minheap ka size bada h as compared to maxheap by 1 
+                if(num > findMedian()) {
+                    //insert in right
+                    //min already bada h seedha insert nahi kr skte, toh 1 element offload karo 
+                    int element = minHeap.top();
+                    minHeap.pop();
+                    maxHeap.push(element);
+                    //now insert num in right 
+                    minHeap.push(num);
+                    
+                }
+                else {
+                    //insert in left
+                    maxHeap.push(num);
+                    
+                }
+            }
     }
     
     double findMedian() {

@@ -31,7 +31,6 @@
                   if(temp !=NULL){
                       //if its a valid node
                       pq.push(temp);
-
                   }
           }
 
