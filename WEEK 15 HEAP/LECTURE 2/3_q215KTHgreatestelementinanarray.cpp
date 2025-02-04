@@ -1,5 +1,6 @@
    #include <bits/stdc++.h>
    using namespace std;
+
       class Solution {
     public:
         int findKthLargest(vector<int>& nums, int k) {
@@ -20,11 +21,11 @@
                     pq.push(ele);
                 }
             }
+            
             int ans = pq.top();
             return ans;
         }
     };
-   int main()
-   {
-     return 0;
-   }
+    int main(){
+        return 0;
+    }

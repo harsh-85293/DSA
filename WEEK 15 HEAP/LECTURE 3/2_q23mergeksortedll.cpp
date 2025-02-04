@@ -11,7 +11,7 @@
   class compare{
           public:
               bool operator()(ListNode* a, ListNode* b){
-                  return a->val > b->val;//if < min heap
+                  return a->val > b->val;//if < max heap
               }
   };
 

@@ -1,7 +1,10 @@
     //{ Driver Code Starts
     //Initial Template for C++
-
-    #include<bits/stdc++.h>
+//Use a min heap to always extract the smallest element.
+// Insert the next element from the same row when extracting an element.
+// Repeat until the heap is empty.
+// Final output is a fully sorted merged array.
+//     #include<bits/stdc++.h>
     #define N 105
     using namespace std;
 
@@ -23,7 +26,7 @@
     class compare{
         public:
             bool operator()(Info* a, Info* b){
-                return a->data > b->data;//if <  min heap
+                return a->data > b->data;//if <  max heap
             }
     };
 

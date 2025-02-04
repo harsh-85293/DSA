@@ -39,6 +39,7 @@
             return true;
         }
 
+
         bool isCompleteTree(TreeNode* root) {
             bool ans = solve(root);
             return ans;
