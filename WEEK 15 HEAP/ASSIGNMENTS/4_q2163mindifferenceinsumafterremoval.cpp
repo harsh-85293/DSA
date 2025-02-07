@@ -1,45 +1,50 @@
 class Solution {
 public:
+    #define ll long long
     long long minimumDifference(vector<int>& nums) {
-        int n = nums.size() / 3;
-        int len = 3 * n;
-        
-        vector<long long> leftSum(len, 0), rightSum(len, 0);
-        priority_queue<int> maxHeap;
-        priority_queue<int, vector<int>, greater<int>> minHeap;
-        long long sum = 0;
-        
-        // Compute leftSum: Minimum sum of first n elements from the left
-        for (int i = 0; i < len; i++) {
+        int n = nums.size()/3;
+
+        vector<ll>prefix(nums.size(), -1), suffix(nums.size(), -1);
+        //prefix[i] = sum of first n elements from left side
+        //suffix[i] = sum of first n elements from right side
+
+        ll sum = 0;//minimum n elements sum
+        priority_queue<ll>pq;
+        for(int  i = 0; i < nums.size(); i++){
             sum += nums[i];
-            maxHeap.push(nums[i]);
-            if (maxHeap.size() > n) {
-                sum -= maxHeap.top();
-                maxHeap.pop();
+            pq.push(nums[i]);
+
+            //pop out max elements
+            if(pq.size() > n){
+                sum  -= pq.top();
+                pq.pop();
             }
-            if (maxHeap.size() == n) leftSum[i] = sum;
+
+            if(pq.size() == n){
+                prefix[i] = sum;
+            }
+        }
+        sum = 0;//maximum n elements sum
+        priority_queue<ll, vector<ll>, greater<ll>>pq2;
+        for(int  i = nums.size() -  1; i >= 0; i--){
+            sum += nums[i];
+            pq2.push(nums[i]);
+
+            //pop out max elements
+            if(pq2.size() > n){
+                sum  -= pq2.top();
+                pq2.pop();
+            }
+
+            if(pq2.size() == n){
+                suffix[i] = sum;
+            }
         }
 
-        sum = 0;
-        
-        // Compute rightSum: Maximum sum of last n elements from the right
-        for (int i = len - 1; i >= 0; i--) {
-            sum += nums[i];
-            minHeap.push(nums[i]);
-            if (minHeap.size() > n) {
-                sum -= minHeap.top();
-                minHeap.pop();
-            }
-            if (minHeap.size() == n) rightSum[i] = sum;
+        ll ans = LONG_LONG_MAX;
+        for(int  i = n - 1; i < 2 * n; i++){
+            ans = min(ans, prefix[i] - suffix[i+1]);
         }
-        
-        long long minDiff = LLONG_MAX;
-        
-        // Compute the minimum difference
-        for (int i = n - 1; i < 2 * n; i++) {
-            minDiff = min(minDiff, leftSum[i] - rightSum[i + 1]);
-        }
-        
-        return minDiff;
+        return ans;
     }
 };
