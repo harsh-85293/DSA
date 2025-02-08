@@ -12,7 +12,7 @@
         //fact(n)=n*fact(n-1)
         //bigproblem->fact(n)
         //small problem->fact(n-1)
-        int recursionkaans=getfactorial(n-1);
+        int recursionkaans = getfactorial(n-1);
         
         //processing
         int finalans = n * recursionkaans;

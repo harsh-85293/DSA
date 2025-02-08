@@ -2,7 +2,7 @@
    using namespace std;
      class Solution {
      public:
-     //track indivisual word count
+     //track individual word count
      unordered_map<string, int>mp;
      vector<int> findSubstring(string s, vector<string>& words) {
           vector<int>ans;
