@@ -1,7 +1,7 @@
 class Solution {
     public:
         int solveusingTabulation(int n){
-            //crete dp array
+            //step1:crete dp array
             vector<int>dp(n+1, -1);
     
             //step2:analyze base cases and update the answer
