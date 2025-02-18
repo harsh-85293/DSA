@@ -1,72 +1,70 @@
 class Solution {
     public:
-        int solveMem(vector<int>& nums, int lastindex, int i, vector<vector<int>>&dp){
-            //base case 
-            if(i >= nums.size()){
+        int solveUsingRec(vector<int>& arr, int curr, int prev){
+            //base case
+            if(curr >= arr.size()) {
                 return 0;
             }
-            //step 3 : check if answer already exists
-            if(dp[lastindex + 1][i] != -1){
-                return dp[lastindex + 1][i];
+            //prev-> index of element that was included in subsequence latest in the traversal
+    
+            int inc = 0;
+            if(prev == -1 || arr[curr] > arr[prev] ){
+                inc = 1 + solveUsingRec(arr,curr+1, curr);
             }
+            int exc = 0 + solveUsingRec(arr, curr+1, prev);
+            int finalAns = max(inc,exc);
+            return finalAns;
+        }//2d dp
     
-            //1 case mera baaaki recursion sambhal lega
-            //include tabhi kar sakte ho jab current element last element se bada hoga
-            int curr =  nums[i];
-            int inc  = 0;
-            //include 
-            if(lastindex == -1 || curr > nums[lastindex]){
-                inc = 1 + solveMem(nums, i, i + 1, dp);
+        int solveUsingMem(vector<int>& arr, int curr, int prev, vector<vector<int> >& dp){
+            //base case
+            if(curr >= arr.size()) {
+                return 0;
             }
-            //exclude
-            int exc = 0 + solveMem(nums, lastindex, i + 1, dp);
-    
-            //step 2: store and return in dp array
-            dp[lastindex + 1][i] = max(inc, exc);
-            return dp[lastindex + 1][i];
-        }// 2d dp
-    
-        int solveusingtab(vector<int>& nums){
-            int n = nums.size();
-            //step 1 : create dp array
-            vector<vector<int>>dp(n + 3, vector<int>(n + 1, -1));
-    
-            //step 2: base case analyze
-            for(int row = 0; row < n+ 3; row++){
-                dp[row][n] = 0;
+            if(dp[curr][prev+1] != -1) {
+                return dp[curr][prev+1];
             }
+            //prev-> index of element that was included in subsequence latest in the traversal
     
-            //step 3 : find range, loop and copy paste
-            for(int lastindex = n + 1; lastindex >= 0; lastindex--){
-                for(int i = n - 1; i >= 0; i--){
-                    //logic
-                    int curr =  nums[i];
-                    int inc  = 0;
-                    //include ff
-                    if(lastindex == -1 || (lastindex < n && curr > nums[lastindex]) ){
-                        inc = 1 + dp[i][i + 1];
+            int inc = 0;
+            if(prev == -1 || arr[curr] > arr[prev] ){
+                inc = 1 + solveUsingMem(arr,curr+1, curr, dp);
+            }
+            int exc = 0 + solveUsingMem(arr, curr+1, prev, dp);
+            dp[curr][prev+1] = max(inc,exc);
+            return dp[curr][prev+1];
+        }
+    
+        int solveUsingTab(vector<int>& arr) {
+            int n = arr.size();
+            vector<vector<int> > dp(n+1, vector<int>(n+1, 0));
+            
+            //Rec ranges
+            //curr -> 0 to n
+            //prev -> -1 to curr
+            //reverse it and apply loop 
+            for(int curr = n-1; curr>=0; curr--) {
+                for(int prev = curr-1; prev>=-1; prev--) {
+                    int inc = 0;
+                    if(prev == -1 || arr[curr] > arr[prev] ){
+                        inc = 1 + dp[curr+1][curr+1];
                     }
-                    //exclude
-                    int exc = 0 + dp[lastindex][i + 1];
-    
-                    //step 2: store and return in dp array
-                    dp[lastindex + 1][i] = max(inc, exc);
-                    dp[lastindex + 1][i] = dp[lastindex + 1][i];
-                }
+                    int exc = 0 + dp[curr+1][prev+1];
+                    dp[curr][prev+1] = max(inc,exc);
+                } 
             }
+    
             return dp[0][0];
         }
-        
-        int lengthOfLIS(vector<int>& nums) {
-            int lastindex = -1;
-             int i = 0;
-            // return solve(nums, lastindex, i);
-            //create and pass 2d dp
-            int n = nums.size();
-            vector<vector<int>>dp(n + 2, vector<int>(n + 1, -1));
-            // 2d array n+1 * n+1 size initialized with value -1
-            //return solveMem(nums, lastindex, i, dp);
     
-            return solveusingtab(nums);
+        int lengthOfLIS(vector<int>& nums) {
+            int curr = 0;
+            //lastIndex
+            int prev = -1;
+            //return solveUsingRec(nums,curr,prev);
+            //OBSERVATION: prev hmesha curr se piche rehne wala h 
+            int n = nums.size();
+            vector<vector<int> > dp(n+1, vector<int>(n+1, -1));
+            return solveUsingMem(nums,curr,prev, dp);
         }
     };
