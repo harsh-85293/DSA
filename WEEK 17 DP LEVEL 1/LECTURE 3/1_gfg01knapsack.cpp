@@ -1,7 +1,6 @@
-//{ Driver Code Starts
+// Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
-
 
 // } Driver Code Ends
 class Solution {
@@ -19,7 +18,7 @@ class Solution {
         }
         
         //include exclude pattern:
-        //include 
+        //include
         int incl = 0;
         if(wt[index] <= capacity){
             incl = val[index]  + solveusingrecursion(val, wt, capacity - wt[index], index - 1);
