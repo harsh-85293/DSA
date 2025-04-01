@@ -41,6 +41,7 @@
 
                 while(!q.empty()){
                     int frontnode = q.front();
+                    cout << frontnode <<", ";
                     q.pop();
 
                     for(auto neighbour : adjList[frontnode]){
