@@ -20,7 +20,7 @@
 
         cout << "now top:" << pq.top() << endl;//30
 
-        cout << "sizze of deque:" << pq.size() << endl;
+        cout << "size of deque:" << pq.size() << endl;
 
         if(pq.empty()==true)
         {

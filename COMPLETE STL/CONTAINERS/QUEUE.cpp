@@ -22,8 +22,8 @@
 
         cout << "new size is:"<< q.size() <<endl;//3 
 
-        cout << "front element is:" <<q.front() << endl;//20 leftmost
-        cout << "back element is:" <<q.back() << endl;//40 rightmost
+        cout << "front element is:" << q.front() << endl;//20 leftmost
+        cout << "back element is:" << q.back() << endl;//40 rightmost
         
         //empty
         if(q.empty()==true)

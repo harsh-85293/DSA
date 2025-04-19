@@ -24,7 +24,7 @@
         }
         
         //fill:
-        fill(arr,arr + 3, 23);
+        fill(arr, arr + 3, 23);
         cout <<  "elements are:"<< endl; 
         for(int i = 0; i < 3; i++)
         {
