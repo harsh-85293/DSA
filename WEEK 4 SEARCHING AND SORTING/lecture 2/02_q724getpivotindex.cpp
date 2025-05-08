@@ -63,6 +63,7 @@ public:
             int ans = binarySearch(0, pivotIndex, target, nums);
             return ans;
         }
+        
         else {
             int ans = binarySearch(pivotIndex+1, n-1, target, nums);
             return ans;

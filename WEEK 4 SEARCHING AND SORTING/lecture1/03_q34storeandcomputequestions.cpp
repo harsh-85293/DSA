@@ -54,7 +54,7 @@
                 //store and compute
                 ansIndex = mid;
                 //right me jao
-                s=mid+1;
+                s = mid+1;
             }
 
             if(target > arr[mid] ) 
